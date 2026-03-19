@@ -1,11 +1,14 @@
 {
-  "group_name": "Telegram-Checked",
-  "out_format": "json",
-  "ping_method": "google",
-  "test_url": "http://149.154.167.51",
-  "expected_code": 204,
-  "sub_urls": [
-    "https://github.com/igareck/vpn-configs-for-russia/raw/main/BLACK_SS+All_RUS.txt",
-    "https://github.com/mahdibland/V2RayAggregator/raw/refs/heads/master/update/provider/provider-all.yml"
-  ]
+    "group":"AutoProxies",
+    "speedtestMode":"pingonly",
+    "pingMethod":"googleping",
+    "sortMethod":"rspeed",
+    "concurrency":30,
+    "testMode":2,
+    "subscription":"subs.txt",
+    "timeout":8,
+    "language":"en",
+    "fontSize":24,
+    "theme":"rainbow",
+    "generatePicMode": 0
 }
