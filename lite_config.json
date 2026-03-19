@@ -1,14 +1,11 @@
 {
-    "group":"AutoProxies",
-    "speedtestMode":"pingonly",
-    "pingMethod":"googleping",
-    "sortMethod":"rspeed",
-    "concurrency":30,
-    "testMode":2,
-    "subscription":"subs.txt",
-    "timeout":8,
-    "language":"en",
-    "fontSize":24,
-    "theme":"rainbow",
+    "group": "ProxyCheck",
+    "speedtestMode": "pingonly",
+    "pingMethod": "googleping",
+    "sortMethod": "rspeed",
+    "concurrency": 100,
+    "testMode": 2,
+    "timeout": 8,
+    "language": "en",
     "generatePicMode": 0
 }
