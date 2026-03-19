@@ -1,10 +1,11 @@
 {
-    "group": "ProxyCheck",
+    "group": "TelegramCheck",
     "speedtestMode": "pingonly",
     "pingMethod": "googleping",
     "sortMethod": "rspeed",
-    "concurrency": 100,
+    "concurrency": 30,
     "testMode": 2,
+    "subscription": "subs.txt",
     "timeout": 8,
     "language": "en",
     "generatePicMode": 0
