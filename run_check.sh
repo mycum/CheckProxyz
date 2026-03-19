@@ -2,16 +2,21 @@
 echo "1. Загрузка баз прокси..."
 curl -sL "https://github.com/igareck/vpn-configs-for-russia/raw/main/BLACK_SS+All_RUS.txt" > subs.txt
 echo "" >> subs.txt
-curl -sL "https://raw.githubusercontent.com/mahdibland/V2RayAggregator/master/sub/sub_merge.txt" >> subs.txt
 
-# Проверим, что ссылки скачались
+# БЕРЕМ ТОЛЬКО ТОП-200, а не всю сырую базу
+curl -sL "https://raw.githubusercontent.com/mahdibland/V2RayAggregator/master/Eternity.txt" >> subs.txt
+
 echo "Скачано строк прокси:"
 wc -l subs.txt
 
-echo "2. Установка ядра тестера (v1.0.0)..."
-# Используем вечное зеркало из репозитория mahdibland
-wget -q -O lite-linux-amd64 https://github.com/mahdibland/SSAggregator/releases/download/1.0.0/lite-linux-amd64
+echo "2. Загрузка официального ядра LiteSpeedTest (v0.16.1)..."
+wget -q -O lite.gz https://github.com/v2rayA/LiteSpeedTest/releases/download/v0.16.1/lite-linux-amd64-v0.16.1.gz
+gunzip lite.gz
+mv lite lite-linux-amd64
 chmod +x ./lite-linux-amd64
+
+echo "Проверка ядра:"
+./lite-linux-amd64 --version
 
 echo "3. Запуск глубокого тестирования..."
 ./lite-linux-amd64 --config lite_config.json --test subs.txt
