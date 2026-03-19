@@ -5,30 +5,37 @@ def main():
     clean_links = []
     
     if os.path.exists('out.json'):
-        print("out.json найден! Начинаю фильтрацию...")
+        print("✅ Файл out.json успешно создан тестером! Начинаю парсинг...")
         with open('out.json', 'r', encoding='utf-8') as f:
-            data = json.load(f)
+            try:
+                data = json.load(f)
+            except:
+                data = {}
         
         nodes = data.get("nodes", [])
+        print(f"Всего протестировано узлов: {len(nodes)}")
+        
         for node in nodes:
-            # Узел ответил на запрос
-            if node.get("ping", 0) > 0:
+            ping_val = str(node.get("ping", ""))
+            # Оставляем только те, которые реально ответили (пинг > 0)
+            if ping_val and ping_val != "0" and ping_val != "0.00":
                 link = node.get("link", "")
-                remarks = node.get("remarks", "").lower()
+                remarks = str(node.get("remarks", "")).lower()
                 
                 # Отсекаем IPv6
-                if "ipv6" in remarks or "ipv6" in link.lower():
+                if "ipv6" in remarks or "ipv6" in str(link).lower():
                     continue
                     
                 clean_links.append(link)
     else:
-        print("ОШИБКА: out.json не найден. Тестер отработал некорректно.")
+        print("❌ ОШИБКА: out.json не найден. Тестер упал или не отработал.")
+        print("Файлы в текущей папке:", os.listdir('.'))
 
-    # Гарантированно создаем файл, чтобы не ломать Git
+    # Записываем результат
     with open('clean_proxies.txt', 'w', encoding='utf-8') as f:
         f.write("\n".join(clean_links))
     
-    print(f"Готово! Сохранено {len(clean_links)} узлов.")
+    print(f"🎯 Готово! В итоговый файл записано {len(clean_links)} рабочих узлов.")
 
 if __name__ == "__main__":
     main()
